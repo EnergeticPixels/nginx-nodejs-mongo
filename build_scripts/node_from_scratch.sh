@@ -36,5 +36,5 @@ echo "-*-*-*   COPY 2 Sample APIs for initial setup testing   -*-*-*"
 echo "-*-*-*   INSTALL Global NodeJS/NPM Installs   -*-*-*"
 sudo npm install --global --no-optional pm2
 
-pm2 start /opt/api1/server1.js --watch
-pm2 start /opt/api2/server2.js
+#pm2 start /opt/api1/server1.js --watch
+#pm2 start /opt/api2/server2.js
