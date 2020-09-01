@@ -38,5 +38,28 @@ Vagrant.configure(VAGRANTFILE_VER) do |config|
       vb.cpus = "2"
     end
   end
+
+  config.vm.define :web do | subconfig |
+    subconfig.vm.box = "geerlingguy/debian10"
+    subconfig.vm.box_version = "1.0.9"
+    subconfig.vm.box_check_update = false
+
+    subconfig.vm.hostname = "frontdoor.me"
+
+    # direct access to API 1 and 2 from outside the debian box
+    subconfig.vm.network "forwarded_port", guest: 80, host: 8080, id: "nginx"
+
+    # private network so that nginx can talk to node apps
+    subconfig.vm.network :private_network, ip: "192.168.64.20"
+
+    # api (NODEJS currently) build scripts
+    #subconfig.vm.provision :shell, path: "./build_scripts/web_build.sh"
+
+    subconfig.vm.provider "virtualbox" do |vb|
+      vb.gui = false
+      vb.memory = "1024"
+      vb.cpus = "1"
+    end
+  end
     
 end
