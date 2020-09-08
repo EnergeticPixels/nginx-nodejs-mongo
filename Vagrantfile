@@ -54,7 +54,7 @@ Vagrant.configure(VAGRANTFILE_VER) do |config|
 
     # api (NODEJS currently) build scripts
     subconfig.vm.provision :shell, path: "./build_scripts/build_tools.sh"
-    subconfig.vm.provision :shell, path: "./build_scripts/nginx_from_source.sh"
+    subconfig.vm.provision :shell, path: "./build_scripts/nginx_from_scratch.sh"
 
     subconfig.vm.provider "virtualbox" do |vb|
       vb.gui = false
