@@ -53,6 +53,7 @@ Vagrant.configure(VAGRANTFILE_VER) do |config|
     subconfig.vm.network :private_network, ip: "192.168.64.20"
 
     # api (NODEJS currently) build scripts
+    subconfig.vm.provision :shell, path: "./build_scripts/build_tools.sh"
     subconfig.vm.provision :shell, path: "./build_scripts/nginx_from_source.sh"
 
     subconfig.vm.provider "virtualbox" do |vb|
