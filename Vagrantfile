@@ -62,5 +62,20 @@ Vagrant.configure(VAGRANTFILE_VER) do |config|
       vb.cpus = "1"
     end
   end
+
+  config.vm.define :database do |subconfig|
+    subconfig.vm.box = "geerlingguy/debian10"
+    subconfig.vm.box_version = "1.0.9"
+    subconfig.vm.box_check_update = false
+    subconfig.vm.hostname = "db.local"
+    subconfig.vm.network :private_network, ip: "192.168.64.30"
+    subconfig.vm.provision :shell, path: "./build_scripts/mongo-install.sh"
+
+    subconfig.vm.provider "virtualbox" do |vb|
+      vb.gui = false
+      vb.memory = "1024"
+      vb.cpus = "1"
+    end
+  end
     
 end
