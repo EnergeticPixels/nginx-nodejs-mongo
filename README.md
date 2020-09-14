@@ -5,6 +5,8 @@ Energetic Pixels' Nginx / NodeJS / MongoDB (single instance)
 * API box forwards guest ports 3000 and 3001 to 9001 and 9002 (host side) for nodejs in development mode.
   * This box has two folders on host synced to two folders on guest for api project 'home'. Automatically created by vagrant.
   * This box has two sample nodejs api scripts for initial setup testing purposes. To use, comment out API box's synced_folder lines and uncomment node_from_scratch file's section about installing 2 sample apis (4 shell script lines).
+* Web box builds NGINX from source and forwards guest port 80 to host 8080. OpenSSL built from source and is integrated with NGINX but not setup in site configuration.
+* DB box has MongoDB installed with capability to build from source (if needed).
 
 ```
 1. Install VirtualBox 4.0 (minimum version).
