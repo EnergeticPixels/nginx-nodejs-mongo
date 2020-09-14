@@ -80,12 +80,15 @@ sudo tar zxvf openssl-${OPENSSL_VER}.tar.gz -C ${UNZIPPED_FOLDER}
 sudo tar zxvf nginx-${NGINX_VER}.tar.gz -C ${UNZIPPED_FOLDER}
 
 # copy nginx manual page to /usr/share/man/man8/ directory
+if [ ! -f /usr/share/man/man8/nginx.8.gz ]; 
+then 
 sudo cp $UNZIPPED_FOLDER/nginx-${NGINX_VER}/man/nginx.8 /usr/share/man/man8
 sudo gzip /usr/share/man/man8/nginx.8
 ls /usr/share/man/man8/ | grep nginx.8.gz
 # check that Man page for NGINX is working
 # uncomment line below for troubleshooting
 #man nginx
+fi
 
 cd $UNZIPPED_FOLDER/nginx-${NGINX_VER}
 
@@ -111,7 +114,7 @@ echo
 sudo nginx -t && sudo nginx -v && sudo nginx -V
 
 # Create folders for nginx multiple virtual host config
-sudo mkdir /etc/nginx{conf.d,snippets,sites-available,sites-enabled}
+sudo mkdir /etc/nginx/{conf.d,snippets,sites-available,sites-enabled}
 
 # Create firewall app profile (UFW) for NGINX
 # If provisioning an Amazon EC2 instance this does not need to be enabled
